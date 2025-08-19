@@ -1,5 +1,5 @@
 import "react-calendar/dist/Calendar.css"; // <-- here
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm";
 import VerifyEmail from "./components/VerifyEmail";
 import { useUserStore } from "./store/useUserStore";
@@ -16,9 +16,9 @@ const App: React.FC = () => {
           <div className="flex justify-center items-center min-h-screen bg-yellow-500">
             <p className="text-lg">
               Go to{" "}
-              <a href="/register" className="text-blue-600 underline">
+              <Link to="/register" className="text-blue-600 underline">
                 Register
-              </a>
+              </Link>
             </p>
           </div>
         }
