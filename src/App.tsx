@@ -19,6 +19,10 @@ const App: React.FC = () => {
               <Link to="/register" className="text-blue-600 underline">
                 Register
               </Link>
+              or{" "}
+              <Link to="/login" className="text-blue-600 underline">
+                Login
+              </Link>
             </p>
           </div>
         }
