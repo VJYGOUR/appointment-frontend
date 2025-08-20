@@ -4,8 +4,10 @@ import RegisterForm from "./components/RegisterForm";
 import VerifyEmail from "./components/VerifyEmail";
 import { useUserStore } from "./store/useUserStore";
 import LoginForm from "./components/LoginForm";
+import Profile from "./components/Profile";
+import CreateProfile from "./components/CreateProfile";
 const App: React.FC = () => {
-  const { isAuthenticated } = useUserStore();
+  const { isAuthenticated, isCreate } = useUserStore();
   return (
     <Routes>
       <Route path="/register" element={<RegisterForm />} />
@@ -23,10 +25,21 @@ const App: React.FC = () => {
               <Link to="/login" className="text-blue-600 underline">
                 Login
               </Link>
+              or{" "}
+              <Link to="/createProfile" className="text-blue-600 underline">
+                createProfile
+              </Link>
             </p>
           </div>
         }
       />
+      <Route
+        path="/getProfile"
+        element={
+          isCreate ? <Profile /> : <Navigate to="createProfile" replace />
+        }
+      />
+      <Route path="/createProfile" element={<CreateProfile />} />
       <Route path="/login" element={<LoginForm />} />
       <Route
         path="/dashboard"

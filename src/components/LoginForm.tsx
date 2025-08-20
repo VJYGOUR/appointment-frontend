@@ -23,7 +23,7 @@ const LoginForm = () => {
       if (res.data.success) {
         console.log(res.data);
         authenticate();
-        navigate("/dashboard");
+        navigate("/createProfile");
         reset();
       }
     } catch (err) {
