@@ -33,15 +33,34 @@ export default function Profile() {
       console.log(handleApiError(err));
     }
   };
-  if (!profile) return <div>Loading...</div>; // handle null safely
+  if (!profile)
+    return (
+      <div className="flex items-center justify-center min-h-screen text-gray-500">
+        Loading...
+      </div>
+    );
 
   return (
-    <div>
-      <p>Name: {profile.name ?? "N/A"}</p>
-      <p>Age: {profile.age ?? "N/A"}</p>
-      <button onClick={handleLogout} className="cursor-pointer">
-        Logout
-      </button>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-sm">
+        <h1 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+          Profile
+        </h1>
+        <div className="space-y-2">
+          <p className="text-gray-700">
+            <span className="font-medium">Name:</span> {profile.name ?? "N/A"}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-medium">Age:</span> {profile.age ?? "N/A"}
+          </p>
+        </div>
+        <button
+          onClick={handleLogout}
+          className="mt-6 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
