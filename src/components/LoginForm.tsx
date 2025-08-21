@@ -22,7 +22,6 @@ const LoginForm = () => {
       const res = await axiosInstance.post("/auth/login", data);
       console.log(res.data);
       if (res.data.success) {
-        console.log(res.data);
         console.log("Token from server:", res.data.token);
         authService.setToken(res.data.token);
         authenticate();
