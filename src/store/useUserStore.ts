@@ -22,6 +22,7 @@ interface UserState {
   isCreate: boolean;
   setIsCreate: () => void;
   authenticate: () => void;
+  logout: () => void;
   userProfile: (profileData: UserProfile) => void;
 }
 
@@ -33,6 +34,7 @@ export const useUserStore = create<UserState>((set) => ({
   setIsCreate: () => {
     set({ isCreate: true });
   },
+  logout: () => set({ isAuthenticated: false, profile: null }),
 
   userProfile: (profileData: UserProfile) => {
     set({ profile: profileData });

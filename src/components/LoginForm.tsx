@@ -5,6 +5,7 @@ import handleApiError from "../utils/handleApiError";
 import { useUserStore } from "../store/useUserStore";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { authService } from "../utils/authService";
 
 interface IFormInput {
   email: string;
@@ -22,6 +23,7 @@ const LoginForm = () => {
       console.log(res.data);
       if (res.data.success) {
         console.log(res.data);
+        await authService.setToken(res.data.token);
         authenticate();
         navigate("/createProfile");
         reset();
