@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // or next/router if Next.js
+import { useNavigate, useParams } from "react-router-dom"; // or next/router if Next.js
 import axiosInstance from "../api/axios";
 import handleApiError from "../utils/handleApiError";
 
@@ -9,6 +9,7 @@ export default function VerifyEmail() {
     "loading"
   );
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const verifyEmail = async () => {
@@ -16,6 +17,7 @@ export default function VerifyEmail() {
         const res = await axiosInstance.get(`/auth/verify-email/${token}`);
         setMessage(res.data?.message || "Your email has been verified!");
         setStatus("success");
+        navigate("/login");
       } catch (err) {
         setMessage(handleApiError(err));
         setStatus("error");
