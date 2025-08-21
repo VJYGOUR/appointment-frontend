@@ -23,6 +23,7 @@ const LoginForm = () => {
       console.log(res.data);
       if (res.data.success) {
         console.log(res.data);
+        console.log("Token from server:", res.data.token);
         await authService.setToken(res.data.token);
         authenticate();
         navigate("/createProfile");
