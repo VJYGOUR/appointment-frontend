@@ -15,9 +15,10 @@ interface IFormInput {
 const LoginForm = () => {
   const { register, handleSubmit, reset } = useForm<IFormInput>();
   const [error, setError] = useState<string | null>(null);
-  const { isAuthenticated, authenticate } = useUserStore();
+  const { isAuthenticated, authenticate,isLoading,setIsLoading } = useUserStore();
   const navigate = useNavigate();
   const onSubmit = async (data: IFormInput) => {
+    setIsLoading(true);
     try {
       const res = await axiosInstance.post("/auth/login", data);
       console.log(res.data);
@@ -26,9 +27,12 @@ const LoginForm = () => {
         authService.setToken(res.data.token);
         authenticate();
         navigate("/createProfile");
+        setIsLoading(false)
         reset();
+      
       }
     } catch (err) {
+      setIsLoading(false)
       setError(handleApiError(err));
     }
   };
@@ -58,9 +62,8 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
-          >
-            Submit
+            className={`${isLoading?'bg-gray-100':''} w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition`}>
+            {isLoading?'Submiting....':'submit'}
           </button>
         </form>
 

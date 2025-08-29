@@ -6,11 +6,13 @@ import { useUserStore } from "./store/useUserStore";
 import LoginForm from "./components/LoginForm";
 import Profile from "./components/Profile";
 import CreateProfile from "./components/CreateProfile";
+import DateSelect from "./components/DateSelect";
 const App: React.FC = () => {
   const { isAuthenticated, isCreate } = useUserStore();
   return (
     <Routes>
       <Route path="/register" element={<RegisterForm />} />
+      <Route path="/date" element={<DateSelect />} />
       <Route path="/verify-email/:token" element={<VerifyEmail />} />
       <Route
         path="/"

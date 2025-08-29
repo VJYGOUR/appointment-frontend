@@ -24,6 +24,8 @@ interface UserState {
   authenticate: () => void;
   logout: () => void;
   userProfile: (profileData: UserProfile) => void;
+  isLoading:boolean;
+  setIsLoading:(value:boolean)=>void;
 }
 
 export const useUserStore = create<UserState>((set) => ({
@@ -41,4 +43,6 @@ export const useUserStore = create<UserState>((set) => ({
   },
   //actions
   authenticate: () => set({ isAuthenticated: true }),
+  isLoading:false,
+  setIsLoading:(value)=>set({isLoading:value})
 }));
