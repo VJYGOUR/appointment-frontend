@@ -1,10 +1,13 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware"; // Import persist middleware
+import { authService } from "../utils/authService";
+
 export interface UserProfile {
   _id: string;
-  email?: string; // optional because mobileNumber might be used instead
+  email?: string;
   name?: string;
   age?: number;
-  mobileNumber?: string; // optional because email might be used instead
+  mobileNumber?: string;
   emailVerified: boolean;
   mobileVerified: boolean;
   emailVerificationToken?: string;
@@ -21,28 +24,50 @@ interface UserState {
   profile: UserProfile | null;
   isCreate: boolean;
   setIsCreate: () => void;
-  authenticate: () => void;
+  authenticate: (data: string | null) => void;
   logout: () => void;
   userProfile: (profileData: UserProfile) => void;
-  isLoading:boolean;
-  setIsLoading:(value:boolean)=>void;
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
 }
 
-export const useUserStore = create<UserState>((set) => ({
-  //state
-  isAuthenticated: false,
-  profile: null,
-  isCreate: false,
-  setIsCreate: () => {
-    set({ isCreate: true });
-  },
-  logout: () => set({ isAuthenticated: false, profile: null }),
+export const useUserStore = create<UserState>()(
+  persist(
+    // Wrap with persist middleware
+    (set) => ({
+      // state
+      isAuthenticated: authService.isLoggedIn(),
+      profile: null,
+      isCreate: false,
+      isLoading: false,
 
-  userProfile: (profileData: UserProfile) => {
-    set({ profile: profileData });
-  },
-  //actions
-  authenticate: () => set({ isAuthenticated: true }),
-  isLoading:false,
-  setIsLoading:(value)=>set({isLoading:value})
-}));
+      // actions
+      setIsCreate: () => set({ isCreate: true }),
+      logout: () => {
+        authService.clearToken();
+        set({ isAuthenticated: false, profile: null, isCreate: false });
+      },
+      userProfile: (profileData: UserProfile) => set({ profile: profileData }),
+      setIsLoading: (value) => set({ isLoading: value }),
+
+      // Updated authenticate function to handle token validation
+      authenticate: (token) => {
+        if (token) {
+          authService.setToken(token);
+          set({ isAuthenticated: authService.isLoggedIn() });
+        } else {
+          set({ isAuthenticated: false });
+        }
+      },
+    }),
+    {
+      name: "user-storage", // Unique name for storage
+      // Only persist the profile data, not loading states
+      partialize: (state) => ({
+        profile: state.profile,
+        isCreate: state.isCreate,
+        isAuthenticated: state.isAuthenticated,
+      }),
+    }
+  )
+);

@@ -1,12 +1,13 @@
 const TOKEN_KEY = "token";
+
 export interface JwtPayload {
   id: string;
   email?: string;
   name?: string;
   iat?: number; // issued at
   exp?: number; // expiration time
-  // add other fields your token contains
 }
+
 export const authService = {
   // Save token
   setToken(token: string): void {
@@ -23,21 +24,32 @@ export const authService = {
     localStorage.removeItem(TOKEN_KEY);
   },
 
-  // Check if logged in
+  // Check if logged in (and token is valid)
   isLoggedIn(): boolean {
-    return !!localStorage.getItem(TOKEN_KEY);
+    const token = this.getToken();
+    if (!token) return false;
+
+    // Check if token is expired
+    const userData = this.getUserData();
+    if (userData?.exp) {
+      const currentTime = Math.floor(Date.now() / 1000);
+      return userData.exp > currentTime;
+    }
+
+    return true;
   },
-    // Get user data from token
+
+  // Get user data from token
   getUserData(): JwtPayload | null {
     const token = this.getToken();
     if (!token) return null;
-    
+
     try {
       // Decode the JWT token (without verification)
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const payload = JSON.parse(atob(token.split(".")[1]));
       return payload;
     } catch (error) {
-      console.error('Error decoding token:', error);
+      console.error("Error decoding token:", error);
       return null;
     }
   },
@@ -45,6 +57,12 @@ export const authService = {
   // Get user ID specifically
   getUserId(): string | null {
     const userData = this.getUserData();
-    return userData?.id || userData?.id || null;
-  }
+    return userData?.id || null;
+  },
+
+  // Get user name from token
+  getUserName(): string | null {
+    const userData = this.getUserData();
+    return userData?.name || null;
+  },
 };
