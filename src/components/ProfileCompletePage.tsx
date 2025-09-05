@@ -3,10 +3,12 @@ import { useUserStore } from "../store/useUserStore";
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
+import axiosInstance from "../api/axios";
 
 const ProfileCompletePage = () => {
   const { profile } = useUserStore();
   const { width, height } = useWindowSize();
+  const { userProfile } = useUserStore();
   const [confettiRunning, setConfettiRunning] = useState(true);
   const [showCelebration, setShowCelebration] = useState(true);
 
@@ -25,6 +27,13 @@ const ProfileCompletePage = () => {
       clearTimeout(celebrationTimer);
     };
   }, []);
+  useEffect(() => {
+    if (!profile) {
+      axiosInstance.get("/profile/get-profile").then((res) => {
+        if (res.data?.user) userProfile(res.data.user);
+      });
+    }
+  }, [profile]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 flex items-center justify-center p-4 relative overflow-hidden">

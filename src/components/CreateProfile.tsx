@@ -56,6 +56,7 @@ export default function CreateProfile() {
         "/profile/create-profile",
         profileData
       );
+      console.log("Profile API Response:", res.data);
 
       if (res.data?.success) {
         setIsCreate();
