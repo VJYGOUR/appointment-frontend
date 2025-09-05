@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../store/useUserStore";
-import { authService } from "../utils/authService";
 
 // Mock data for appointments (replace with API calls)
 const mockAppointments = [

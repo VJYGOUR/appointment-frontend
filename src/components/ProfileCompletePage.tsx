@@ -5,7 +5,7 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
 const ProfileCompletePage = () => {
-  const { profile, logout } = useUserStore();
+  const { profile } = useUserStore();
   const { width, height } = useWindowSize();
   const [confettiRunning, setConfettiRunning] = useState(true);
   const [showCelebration, setShowCelebration] = useState(true);

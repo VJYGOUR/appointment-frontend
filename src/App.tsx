@@ -1,5 +1,5 @@
 import "react-calendar/dist/Calendar.css";
-import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm";
 import VerifyEmail from "./components/VerifyEmail";
 import { useUserStore } from "./store/useUserStore";
