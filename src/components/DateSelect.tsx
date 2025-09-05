@@ -37,8 +37,11 @@ function DateSelect() {
             `/slots/getSlots/${value.toISOString()}`
           );
           console.log(res.data);
-          setTotalAppointments(res.data.bookedTimes.length);
-          setSlots(res.data.availableSlots);
+          const bookedTimes = res.data?.bookedTimes || [];
+          const availableSlots = res.data?.availableSlots || [];
+
+          setTotalAppointments(bookedTimes.length);
+          setSlots(availableSlots);
         } catch (error) {
           console.error("Error fetching slots:", error);
           setSlots([]);
