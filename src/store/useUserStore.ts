@@ -17,7 +17,12 @@ export interface UserProfile {
   passwordResetExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
+
+  // ✅ Add missing fields
+  profession?: string;
+  interests?: string;
 }
+
 
 interface UserState {
   isAuthenticated: boolean;
