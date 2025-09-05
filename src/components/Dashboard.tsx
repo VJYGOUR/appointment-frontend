@@ -42,7 +42,7 @@ const mockStats = {
 };
 
 const Dashboard = () => {
-  const { profile } = useUserStore();
+  const { profile, totalAppointments } = useUserStore();
   const [activeTab, setActiveTab] = useState("upcoming");
   const [appointments] = useState(mockAppointments);
   const [stats] = useState(mockStats);
@@ -181,7 +181,7 @@ const Dashboard = () => {
                   Total Appointments
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {stats.totalAppointments}
+                  {totalAppointments}
                 </p>
               </div>
             </div>

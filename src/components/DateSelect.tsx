@@ -5,6 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import axiosInstance from "../api/axios";
 import handleApiError from "../utils/handleApiError";
 import { authService } from "../utils/authService";
+import { useUserStore } from "../store/useUserStore";
 
 // Define types for our booking data
 interface BookingData {
@@ -15,6 +16,7 @@ interface BookingData {
 
 function DateSelect() {
   const [date, setDate] = useState<Date>(new Date());
+  const { setTotalAppointments } = useUserStore();
   const [slots, setSlots] = useState<string[]>([]);
   const [singleSlot, setSingleSlot] = useState<string>("");
   const [bookingSuccess, setBookingSuccess] = useState<boolean>(false);
@@ -35,6 +37,7 @@ function DateSelect() {
             `/slots/getSlots/${value.toISOString()}`
           );
           console.log(res.data);
+          setTotalAppointments(res.data.bookedTimes.length);
           setSlots(res.data.availableSlots);
         } catch (error) {
           console.error("Error fetching slots:", error);

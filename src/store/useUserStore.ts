@@ -23,9 +23,10 @@ export interface UserProfile {
   interests?: string;
 }
 
-
 interface UserState {
   isAuthenticated: boolean;
+  totalAppointments: number;
+  setTotalAppointments: (count: number) => void;
   profile: UserProfile | null;
   isCreate: boolean;
   setIsCreate: () => void;
@@ -41,12 +42,15 @@ export const useUserStore = create<UserState>()(
     // Wrap with persist middleware
     (set) => ({
       // state
+      totalAppointments: 0,
       isAuthenticated: authService.isLoggedIn(),
       profile: null,
       isCreate: false,
       isLoading: false,
 
       // actions
+      setTotalAppointments: (count: number) =>
+        set({ totalAppointments: count }),
       setIsCreate: () => set({ isCreate: true }),
       logout: () => {
         authService.clearToken();
@@ -72,6 +76,7 @@ export const useUserStore = create<UserState>()(
         profile: state.profile,
         isCreate: state.isCreate,
         isAuthenticated: state.isAuthenticated,
+        totalAppointments: state.totalAppointments,
       }),
     }
   )
