@@ -84,10 +84,10 @@ export default function CreateProfile() {
   const bioValue = watch("bio");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:shadow-3xl">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl bg-gray-800 rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:shadow-3xl">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-700 to-purple-800 p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full opacity-10">
             <div className="grid grid-cols-4 gap-2 rotate-45 transform scale-150">
               {[...Array(12)].map((_, i) => (
@@ -101,7 +101,7 @@ export default function CreateProfile() {
           <h1 className="text-3xl font-bold text-white mb-2 relative z-10">
             Create Your Profile
           </h1>
-          <p className="text-indigo-200 relative z-10">
+          <p className="text-indigo-300 relative z-10">
             Tell us a bit about yourself
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function CreateProfile() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Avatar Selection */}
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              <h3 className="text-lg font-semibold text-gray-200 mb-4">
                 Choose Your Avatar
               </h3>
               <div className="grid grid-cols-6 gap-3 mb-4">
@@ -119,8 +119,8 @@ export default function CreateProfile() {
                     key={index}
                     className={`text-3xl p-3 rounded-xl cursor-pointer transition-all duration-200 transform hover:scale-110 ${
                       selectedAvatar === avatar
-                        ? "bg-indigo-100 border-2 border-indigo-500 shadow-md"
-                        : "bg-gray-100 border border-gray-200 hover:bg-indigo-50"
+                        ? "bg-indigo-900 border-2 border-indigo-500 shadow-md"
+                        : "bg-gray-700 border border-gray-600 hover:bg-indigo-800"
                     }`}
                     onClick={() => setSelectedAvatar(avatar)}
                   >
@@ -132,7 +132,7 @@ export default function CreateProfile() {
 
             {/* Name Field */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-300">
                 Full Name
               </label>
               <input
@@ -144,11 +144,11 @@ export default function CreateProfile() {
                     message: "Name must be at least 2 characters",
                   },
                 })}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full p-4 bg-gray-700 text-white border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                 placeholder="Enter your full name"
               />
               {errors.name && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-red-400 text-sm mt-1">
                   {errors.name.message}
                 </p>
               )}
@@ -156,7 +156,7 @@ export default function CreateProfile() {
 
             {/* Age Field */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-300">
                 Age
               </label>
               <input
@@ -167,11 +167,11 @@ export default function CreateProfile() {
                   max: { value: 120, message: "Age must be reasonable" },
                   valueAsNumber: true,
                 })}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full p-4 bg-gray-700 text-white border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                 placeholder="Enter your age"
               />
               {errors.age && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-red-400 text-sm mt-1">
                   {errors.age.message}
                 </p>
               )}
@@ -179,33 +179,33 @@ export default function CreateProfile() {
 
             {/* Profession Field */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-300">
                 Profession
               </label>
               <input
                 type="text"
                 {...register("profession")}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full p-4 bg-gray-700 text-white border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                 placeholder="What do you do? (optional)"
               />
             </div>
 
             {/* Interests Field */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-300">
                 Interests
               </label>
               <input
                 type="text"
                 {...register("interests")}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full p-4 bg-gray-700 text-white border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                 placeholder="Your hobbies and interests (optional)"
               />
             </div>
 
             {/* Bio Field */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-300">
                 Bio
               </label>
               <textarea
@@ -216,22 +216,22 @@ export default function CreateProfile() {
                   },
                 })}
                 rows={3}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full p-4 bg-gray-700 text-white border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
                 placeholder="Tell us a bit about yourself (optional)"
               />
-              <div className="text-xs text-gray-500 text-right">
+              <div className="text-xs text-gray-400 text-right">
                 {bioValue?.length || 0}/200 characters
               </div>
               {errors.bio && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-red-400 text-sm mt-1">
                   {errors.bio.message}
                 </p>
               )}
             </div>
 
             {/* Preview Section */}
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-              <h3 className="text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gray-700 p-4 rounded-xl border border-gray-600">
+              <h3 className="text-sm font-medium text-gray-300 mb-2">
                 Profile Preview
               </h3>
               <div className="flex items-center space-x-3">
@@ -239,10 +239,10 @@ export default function CreateProfile() {
                   {selectedAvatar || avatarOptions[0]}
                 </div>
                 <div>
-                  <p className="font-medium text-gray-800">
+                  <p className="font-medium text-gray-200">
                     {nameValue || "Your Name"}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-400">
                     {watch("age") ? `${watch("age")} years old` : "Age not set"}
                   </p>
                 </div>
@@ -253,7 +253,7 @@ export default function CreateProfile() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white font-semibold py-4 px-4 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:transform-none disabled:hover:shadow-md"
+              className="w-full bg-gradient-to-r from-indigo-700 to-purple-800 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-4 px-4 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:transform-none disabled:hover:shadow-md"
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
@@ -267,16 +267,16 @@ export default function CreateProfile() {
 
             {/* Messages */}
             {successMessage && (
-              <div className="p-4 bg-green-50 border border-green-200 rounded-xl animate-fadeIn">
-                <p className="text-green-700 text-center font-medium">
+              <div className="p-4 bg-green-900/30 border border-green-700/50 rounded-xl animate-fadeIn">
+                <p className="text-green-400 text-center font-medium">
                   {successMessage}
                 </p>
               </div>
             )}
 
             {errorMessage && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-xl animate-fadeIn">
-                <p className="text-red-700 text-center font-medium">
+              <div className="p-4 bg-red-900/30 border border-red-700/50 rounded-xl animate-fadeIn">
+                <p className="text-red-400 text-center font-medium">
                   {errorMessage}
                 </p>
               </div>
@@ -285,8 +285,8 @@ export default function CreateProfile() {
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 p-6 text-center border-t border-gray-100">
-          <p className="text-xs text-gray-500">
+        <div className="bg-gray-700 p-6 text-center border-t border-gray-600">
+          <p className="text-xs text-gray-400">
             Your profile helps us personalize your experience. You can update it
             anytime.
           </p>

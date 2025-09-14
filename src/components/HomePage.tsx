@@ -16,7 +16,7 @@ const HomePage = () => {
   const userName = profile?.name || authService.getUserName() || "User";
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 -z-10">
         <img
@@ -31,17 +31,17 @@ const HomePage = () => {
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-10 space-y-4 sm:space-y-0">
           <div className="flex items-center space-x-3 justify-center sm:justify-start"></div>
           {isAuthenticated && (
-            <div className="relative w-full min-h-[80vh] bg-gradient-to-br from-indigo-100 to-purple-200 rounded-3xl shadow-lg p-6 overflow-hidden mb-10 flex flex-col items-center justify-center space-y-8">
+            <div className="relative w-full min-h-[80vh] bg-gradient-to-br from-indigo-900/30 to-purple-900/30 rounded-3xl shadow-lg p-6 overflow-hidden mb-10 flex flex-col items-center justify-center space-y-8">
               {/* Decorative floating shapes */}
-              <div className="absolute top-10 left-10 w-24 h-24 bg-indigo-300 rounded-full opacity-30 animate-pulse"></div>
-              <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-300 rounded-full opacity-30 animate-pulse"></div>
+              <div className="absolute top-10 left-10 w-24 h-24 bg-indigo-700/30 rounded-full opacity-30 animate-pulse"></div>
+              <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-700/30 rounded-full opacity-30 animate-pulse"></div>
 
               {/* Greeting */}
-              <h1 className="text-indigo-700 font-extrabold text-4xl sm:text-5xl md:text-6xl text-center drop-shadow-lg">
+              <h1 className="text-indigo-300 font-extrabold text-4xl sm:text-5xl md:text-6xl text-center drop-shadow-lg">
                 Welcome, {userName}!
               </h1>
-              <p className="text-gray-600 text-center text-base sm:text-lg md:text-xl max-w-3xl">
-                Here’s what you can do today: manage your appointments, update
+              <p className="text-gray-400 text-center text-base sm:text-lg md:text-xl max-w-3xl">
+                Here's what you can do today: manage your appointments, update
                 your profile, and explore your dashboard—all in one place.
               </p>
 
@@ -51,21 +51,21 @@ const HomePage = () => {
                   {
                     title: "Upcoming Appointments",
                     desc: "Check your next meetings and reminders",
-                    color: "from-indigo-500 to-indigo-600",
+                    color: "from-indigo-700 to-indigo-800",
                     icon: "📅",
                     link: "/date",
                   },
                   {
                     title: "Edit Profile",
                     desc: "Update your information and preferences",
-                    color: "from-purple-500 to-purple-600",
+                    color: "from-purple-700 to-purple-800",
                     icon: "👤",
                     link: "/createProfile",
                   },
                   {
                     title: "Dashboard",
                     desc: "View statistics and manage your account",
-                    color: "from-green-500 to-emerald-600",
+                    color: "from-green-700 to-emerald-800",
                     icon: "📊",
                     link: "/dashboard",
                   },
@@ -79,22 +79,26 @@ const HomePage = () => {
                     <h3 className="font-bold text-lg mb-1 text-center">
                       {card.title}
                     </h3>
-                    <p className="text-sm text-center">{card.desc}</p>
+                    <p className="text-sm text-center text-gray-200">
+                      {card.desc}
+                    </p>
                   </Link>
                 ))}
               </div>
 
               {/* Optional bottom stats or motivational info */}
               <div className="mt-6 flex flex-wrap justify-center gap-4">
-                <div className="bg-white/80 backdrop-blur-md rounded-xl px-4 py-2 shadow-md text-gray-700 font-medium">
-                  You have <span className="font-bold">3</span> upcoming
-                  appointments
+                <div className="bg-gray-800/80 backdrop-blur-md rounded-xl px-4 py-2 shadow-md text-gray-300 font-medium">
+                  You have <span className="font-bold text-white">3</span>{" "}
+                  upcoming appointments
                 </div>
-                <div className="bg-white/80 backdrop-blur-md rounded-xl px-4 py-2 shadow-md text-gray-700 font-medium">
-                  Profile completion: <span className="font-bold">75%</span>
+                <div className="bg-gray-800/80 backdrop-blur-md rounded-xl px-4 py-2 shadow-md text-gray-300 font-medium">
+                  Profile completion:{" "}
+                  <span className="font-bold text-white">75%</span>
                 </div>
-                <div className="bg-white/80 backdrop-blur-md rounded-xl px-4 py-2 shadow-md text-gray-700 font-medium">
-                  Notifications: <span className="font-bold">On</span>
+                <div className="bg-gray-800/80 backdrop-blur-md rounded-xl px-4 py-2 shadow-md text-gray-300 font-medium">
+                  Notifications:{" "}
+                  <span className="font-bold text-white">On</span>
                 </div>
               </div>
             </div>
@@ -104,8 +108,8 @@ const HomePage = () => {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Welcome Card */}
-          <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col">
-            <div className="relative bg-gradient-to-r from-indigo-600 to-purple-700 p-10 text-center">
+          <div className="bg-gray-800/90 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden border border-gray-700 flex flex-col">
+            <div className="relative bg-gradient-to-r from-indigo-700 to-purple-800 p-10 text-center">
               <img
                 src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1600&q=80"
                 alt="appointments"
@@ -114,7 +118,7 @@ const HomePage = () => {
               <h2 className="text-4xl sm:text-5xl font-extrabold text-white relative z-10 drop-shadow-lg">
                 AppointMe
               </h2>
-              <p className="text-blue-100 relative z-10 mt-2 text-base sm:text-lg">
+              <p className="text-indigo-200 relative z-10 mt-2 text-base sm:text-lg">
                 Schedule appointments with ease
               </p>
             </div>
@@ -122,10 +126,10 @@ const HomePage = () => {
             <div className="p-8 sm:p-10 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex justify-center mb-6">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-indigo-50 rounded-full flex items-center justify-center shadow-inner">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-indigo-900/30 rounded-full flex items-center justify-center shadow-inner">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-10 w-10 sm:h-12 sm:w-12 text-indigo-600"
+                      className="h-10 w-10 sm:h-12 sm:w-12 text-indigo-400"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -140,7 +144,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-600 text-center mb-8 text-base sm:text-lg">
+                <p className="text-gray-400 text-center mb-8 text-base sm:text-lg">
                   {isAuthenticated
                     ? "Manage your appointments and profile"
                     : "Get started by registering or logging into your account"}
@@ -151,14 +155,14 @@ const HomePage = () => {
                     <>
                       <Link
                         to="/register"
-                        className="block w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:scale-105 text-white font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-lg"
+                        className="block w-full bg-gradient-to-r from-indigo-700 to-purple-800 hover:scale-105 text-white font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-lg"
                       >
                         Create Account
                       </Link>
 
                       <Link
                         to="/login"
-                        className="block w-full border-2 border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 text-gray-700 font-medium py-4 px-4 rounded-xl transition-all duration-200 text-center shadow-md"
+                        className="block w-full border-2 border-gray-600 hover:border-indigo-500 hover:bg-indigo-900/30 text-gray-300 font-medium py-4 px-4 rounded-xl transition-all duration-200 text-center shadow-md"
                       >
                         Sign In
                       </Link>
@@ -167,7 +171,7 @@ const HomePage = () => {
                     <>
                       <Link
                         to="/dashboard"
-                        className="block w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:scale-105 text-white font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-lg flex items-center justify-center"
+                        className="block w-full bg-gradient-to-r from-indigo-700 to-purple-800 hover:scale-105 text-white font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-lg flex items-center justify-center"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +192,7 @@ const HomePage = () => {
 
                       <Link
                         to="/date"
-                        className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:scale-105 text-white font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-lg flex items-center justify-center"
+                        className="block w-full bg-gradient-to-r from-green-700 to-emerald-800 hover:scale-105 text-white font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-lg flex items-center justify-center"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +213,7 @@ const HomePage = () => {
 
                       <Link
                         to="/createProfile"
-                        className="block w-full border-2 border-indigo-300 bg-indigo-50 hover:bg-indigo-100 hover:scale-105 text-indigo-700 font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-md flex items-center justify-center"
+                        className="block w-full border-2 border-indigo-600 bg-indigo-900/30 hover:bg-indigo-800/50 hover:scale-105 text-indigo-300 font-medium py-4 px-4 rounded-xl transition transform duration-200 text-center shadow-md flex items-center justify-center"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -232,8 +236,8 @@ const HomePage = () => {
                 </div>
               </div>
 
-              <div className="bg-gray-50 mt-10 p-6 text-center border-t border-gray-100 rounded-b-3xl">
-                <p className="text-xs text-gray-500">
+              <div className="bg-gray-700 mt-10 p-6 text-center border-t border-gray-600 rounded-b-3xl">
+                <p className="text-xs text-gray-400">
                   By continuing, you agree to our Terms of Service and Privacy
                   Policy
                 </p>
@@ -243,8 +247,8 @@ const HomePage = () => {
 
           {/* Features */}
           <div className="space-y-6">
-            <div className="bg-white/90 backdrop-blur-md rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center sm:text-left">
+            <div className="bg-gray-800/90 backdrop-blur-md rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-700">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-200 mb-6 text-center sm:text-left">
                 Why Choose AppointMe?
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -272,14 +276,14 @@ const HomePage = () => {
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className="flex items-start space-x-3 bg-gray-50 p-4 rounded-xl hover:shadow-md transition"
+                    className="flex items-start space-x-3 bg-gray-700/50 p-4 rounded-xl hover:shadow-md transition"
                   >
                     <span className="text-3xl">{feature.icon}</span>
                     <div>
-                      <h3 className="font-semibold text-gray-700 text-lg">
+                      <h3 className="font-semibold text-gray-200 text-lg">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-500 text-sm">{feature.desc}</p>
+                      <p className="text-gray-400 text-sm">{feature.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -287,7 +291,7 @@ const HomePage = () => {
             </div>
 
             {isAuthenticated && (
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-700 rounded-3xl p-8 sm:p-10 text-white shadow-2xl">
+              <div className="bg-gradient-to-r from-indigo-700 to-purple-800 rounded-3xl p-8 sm:p-10 text-white shadow-2xl">
                 <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center sm:text-left">
                   Your Next Steps
                 </h2>
@@ -299,7 +303,7 @@ const HomePage = () => {
                   ].map((step, i) => (
                     <li
                       key={i}
-                      className="flex items-center text-sm sm:text-base"
+                      className="flex items-center text-sm sm:text-base text-gray-200"
                     >
                       <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-3">
                         <svg
